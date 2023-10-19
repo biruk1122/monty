@@ -3,7 +3,10 @@
 
 void push_op(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new_node;
+	(void)line_number;
+
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -24,7 +27,10 @@ void push_op(stack_t **stack, unsigned int line_number)
 
 void pall_op(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current = *stack;
+        stack_t *current;
+	(void)line_number;
+
+	current = *stack;
 	while (current != NULL)
 	{
 		printf("%d\n", current->n);
@@ -44,12 +50,14 @@ void pint_op(stack_t **stack, unsigned int line_number)
 
 void pop_op(stack_t **stack, unsigned int line_number)
 {
+	stack_t *temp;
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	stack_t *temp = *stack;
+
+	temp = *stack;
 	*stack = (*stack)->next;
 	if (*stack != NULL)
 	{
@@ -61,13 +69,16 @@ void pop_op(stack_t **stack, unsigned int line_number)
 
 void swap_op(stack_t **stack, unsigned int line_number)
 {
+	stack_t *first;
+	stack_t *second;
+
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	stack_t *first = *stack;
-	stack_t *second = first->next;
+	first = *stack;
+	second = first->next;
 	first->next = second->next;
 	second->prev = NULL;
 	if (first->next != NULL)
