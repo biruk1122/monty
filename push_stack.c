@@ -4,7 +4,7 @@
  * @stack: stack
  * @line_number: line number
  */
-void push_op(stack_t **stack, unsigned int line_number)
+/*void push_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 	(void)line_number;
@@ -25,7 +25,27 @@ void push_op(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new_node;
 		*stack = new_node;
 	}
+}*/
+void push_op(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new_node;
+
+	(void)line_number;
+
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = globals.value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
+	if (*stack)
+		(*stack)->prev = new_node;
+	*stack = new_node;
 }
+
 /**
  * pall_op - pall
  * @stack: stack
