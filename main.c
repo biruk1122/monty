@@ -53,7 +53,7 @@ void process_line(char *line, unsigned int line_number, stack_t **stack)
 	if (strcmp(opcode, "push") == 0)
 	{
 		arg = strtok(NULL, " \n\t");
-		if (arg[1] == NULL)
+		if (arg == NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			free(line);
