@@ -23,8 +23,8 @@ void push_op(stack_t **stack, unsigned int line_number)
 	if (*stack != NULL)
 	{
 		(*stack)->prev = new_node;
+		*stack = new_node;
 	}
-	*stack = new_node;
 }
 /**
  * pall_op - pall
