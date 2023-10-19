@@ -1,6 +1,9 @@
 #include "monty.h"
-
-
+/**
+ * push_op - pushing a value
+ * @stack: stack
+ * @line_number: line number
+ */
 void push_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
@@ -16,28 +19,35 @@ void push_op(stack_t **stack, unsigned int line_number)
 	new_node->n = globals.value;
 	new_node->prev = NULL;
 	new_node->next = *stack;
-	
+
 	if (*stack != NULL)
 	{
 		(*stack)->prev = new_node;
 	}
 	*stack = new_node;
 }
-
-
+/**
+ * pall_op - pall
+ * @stack: stack
+ * @line_number: line
+ */
 void pall_op(stack_t **stack, unsigned int line_number)
 {
-        stack_t *current;
+	stack_t *current = *stack;
+
 	(void)line_number;
 
-	current = *stack;
 	while (current != NULL)
 	{
 		printf("%d\n", current->n);
 		current = current->next;
 	}
 }
-
+/**
+ * pint_op - pint
+ * @stack: stack
+ * @line_number: line
+ */
 void pint_op(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
@@ -47,10 +57,15 @@ void pint_op(stack_t **stack, unsigned int line_number)
 	}
 	printf("%d\n", (*stack)->n);
 }
-
+/**
+ * pop_op - pop
+ * @stack: stack
+ * @line_number: line
+ */
 void pop_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
+
 	if (*stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
@@ -65,7 +80,11 @@ void pop_op(stack_t **stack, unsigned int line_number)
 	}
 	free(temp);
 }
-
+/**
+ * swap_op - swap
+ * @stack: stack
+ * @line_number: line
+ */
 
 void swap_op(stack_t **stack, unsigned int line_number)
 {
@@ -87,5 +106,6 @@ void swap_op(stack_t **stack, unsigned int line_number)
 	}
 	second->next = first;
 	first->prev = second;
+
 	*stack = second;
 }
