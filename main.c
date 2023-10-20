@@ -62,7 +62,7 @@ void process_line(char *line, unsigned int line_number, stack_t **stack)
 		}
 		globals.value = atoi(arg);
 	}
-	else if (strcmp(opcode, "pall") == 0)
+	/*else if (strcmp(opcode, "pall") == 0)
 	{
 		pall_op(stack, line_number);
 	}
@@ -74,6 +74,7 @@ void process_line(char *line, unsigned int line_number, stack_t **stack)
 	{
 		nop_op(stack, line_number);
 	}
+	*/
 	func = get_op_func(opcode);
 	if (func != NULL)
 	{
